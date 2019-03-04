@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--映射文件的唯一标示符，表示文件在哪-->
+<mapper namespace="info.sinoeast.lt.mapper.BookinformationMapper">
+    <select id="queryInformation" resultMap="Bookinformation_card_map">
+        select * from bookinformation book inner join customer cus on cus.cus_id=book.cus_id
+    </select>
+    <resultMap id="Bookinformation_card_map" type="Bookinformation">
+        <id property="booAutoid" column="boo_autoid"></id>
+        <result property="comCode" column="com_code"></result>
+        <result property="cusId" column="cus_id"></result>
+        <result property="booEveryday" column="boo_everyday"></result>
+        <result property="booNo" column="boo_no"></result>
+        <result property="booBaddress" column="boo_baddress"></result>
+        <result property="booAaddress" column="boo_aaddress"></result>
+        <result property="booBtime" column="boo_btime"></result>
+        <result property="booAtime" column="boo_atime"></result>
+        <result property="booBerth" column="boo_berth"></result>
+        <result property="booNumber" column="boo_number"></result>
+        <result property="booFare" column="boo_fare"></result>
+        <result property="booTime" column="boo_time"></result>
+        <result property="flagPay" column="flag_pay"></result>
+        <result property="flagType" column="flag_type"></result>
+        <result property="flag" column="flag"></result>
+        <!-- 一对一时，对象成员使用 association映射;javaType指定该属性的类型-->
+        <association property="customer" javaType="Customer">
+            <id property="cusAutoid" column="cus_autoid"></id>
+            <result property="cusAccount" column="cus_account"></result>
+            <result property="cusPwd" column="cus_pwd"></result>
+            <result property="cusId" column="cus_id"></result>
+            <result property="cusSex" column="cus_sex"></result>
+            <result property="cusTelnumber" column="cus_telnumber"></result>
+            <result property="cusEmail" column="cus_email"></result>
+            <result property="cusTimer" column="cus_timer"></result>
+            <result property="cusIntegral" column="cus_integral"></result>
+            <result property="flag" column="flag"></result>
+        </association>
+    </resultMap>
+    <select id="queryCountByfliNo" resultType="Integer" parameterType="String">
+        select count(*) from bookinformation where boo_no=#{booNo}
+    </select>
+
+
+
+
+
+</mapper>

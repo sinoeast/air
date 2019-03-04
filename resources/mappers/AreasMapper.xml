@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--映射文件的唯一标示符，表示文件在哪-->
+<mapper namespace="info.sinoeast.lt.mapper.AreasMapper">
+    <select id="selectAreasname" resultType="Areas" parameterType="String">
+        select *from areas where areaname=#{areaName}
+    </select>
+
+
+</mapper>

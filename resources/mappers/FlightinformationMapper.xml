@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--映射文件的唯一标示符，表示文件在哪-->
+<mapper namespace="info.sinoeast.lt.mapper.FlightinformationMapper">
+    <select id="queryInformation" resultType="Flightinformation">
+        select *from flightinfomation
+    </select>
+    <insert id="insertFliinfo" parameterType="Flightinformation">
+        insert into flightinfomation(com_code,air_code,fli_everyday,fli_no,fli_discount,fli_baddress,fli_aaddress,fli_btime,fli_atime,fli_Fnumber,fli_Cnumber,fli_Ynumber,fli_Ffare,fli_Cfare,fli_Yfare,fli_refundtime,fli_refund,flag)
+        values(#{comCode},#{airCode},#{fliEveryday},#{fliNo},#{fliDiscount},#{fliBaddress},#{fliAaddress},#{fliBtime},#{fliAtime},#{fliFnumber},#{fliCnumber},#{fliYnumber},#{fliFfare},#{fliCfare},#{fliYfare},null,'0','1')
+    </insert>
+    <select id="selectfliinfoById" resultType="Flightinformation" parameterType="int">
+        select *from  flightinfomation where fli_autoid=#{fliAutoid}
+    </select>
+    <delete id="deleteone" parameterType="String">
+        delete from flightinfomation where fli_no=#{fliNo}
+    </delete>
+    <update id="updataByPrimaryKeySelective" parameterType="Flightinformation">
+        update flightinfomation
+        <set>
+            <if test="fliDiscount!=null">
+                fli_discount=#{fliDiscount},
+            </if>
+            <if test="fliBtime!=null">
+                fli_btime=#{fliBtime},
+            </if>
+            <if test="fliAtime!=null">
+                fli_Atime=#{fliAtime},
+            </if>
+        </set>
+        <where>
+            fli_Autoid=#{fliAutoid}
+        </where>
+    </update>
+</mapper>
